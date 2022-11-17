@@ -1,7 +1,17 @@
-import { expect, it } from 'vitest';
-import { sum } from '.';
+import { describe, expect, test } from 'vitest';
+import buildMatches from './index';
 
-it('adds 1 + 2 to equal 3', () => {
-  //TODO: add more tests
-  expect(sum(1, 2)).toBe(3);
+describe('Acceptance', () => {
+  test('The function exists', () => {
+    expect(buildMatches).toBeInstanceOf(Function);
+  });
+
+  test('The function returns a function', () => {
+    const actual = buildMatches('any');
+    expect(actual).toBeInstanceOf(Function);
+  });
+});
+
+describe.todo('Workflow', () => {
+  //TODO
 });
