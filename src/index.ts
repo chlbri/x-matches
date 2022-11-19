@@ -18,3 +18,5 @@ export default function buildMatches<T extends StateValue = StateValue>(
     return out;
   };
 }
+
+export type { MatchOptions, StateValue, StateMatching };
