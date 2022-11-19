@@ -1,5 +1,3 @@
-import { StateMatching, StateValue } from '@bemedev/decompose';
-
 export type MatchOptions<T extends string = string> =
   | {
       or: MatchOptions<T>[];
@@ -7,9 +5,9 @@ export type MatchOptions<T extends string = string> =
   | { and: MatchOptions<T>[] }
   | T;
 
-export function _buildMatches<T extends StateValue = StateValue>(
-  decomposeds: readonly StateMatching<T>[],
-  value: MatchOptions<StateMatching<T>>,
+export function _buildMatches(
+  decomposeds: readonly string[],
+  value: MatchOptions,
 ): boolean {
   let out = false;
   if (typeof value === 'string') {
@@ -29,7 +27,7 @@ export function _buildMatches<T extends StateValue = StateValue>(
   return out;
 }
 
-// #region reduceFunction
+// #region PartialCall
 type Arr = readonly any[];
 
 export function reduceFunction<U extends Arr, T extends Arr, R>(
