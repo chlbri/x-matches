@@ -12,6 +12,15 @@
   "engines": {
     "node": ">=12"
   },
+  "keywords": [
+    "state",
+    "xstate",
+    "Statevalue",
+    "beme.dev",
+    "condition",
+    "logical",
+    "matcher"
+  ],
   "scripts": {
     "config": "pnpm install",
     "rollup": "rollup -c",
