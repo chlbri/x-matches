@@ -41,37 +41,43 @@ describe('Workflow', () => {
   };
   // #endregion
 
-  test.concurrent('test - 1', () => {
+  test.concurrent('test - 1 => simple', () => {
     useExpect('step', 'step');
   });
 
-  test.concurrent('test - 2', () => {
-    useExpect(
-      {
-        parent: {
-          child1: {},
-          child2: 'grandchild2',
-        },
-      },
-      'parent.child2.grandchild2',
-      'parent',
-      { or: ['parent', 'notParent' as any] },
-    );
+  test.concurrent('test - 2 => compound', () => {
+    useExpect({ parent: 'child1' }, 'parent', 'parent.child1');
   });
 
-  test.concurrent('test - 3', () => {
-    useExpect(
-      {
-        parent: {
-          child1: {},
-          child2: 'grandchild3',
+  describe('Parallel', () => {
+    test.concurrent('test - 1', () => {
+      useExpect(
+        {
+          parent: {
+            child1: {},
+            child2: 'grandchild2',
+          },
         },
-      },
-      'parent.child1',
-      'parent.child2.grandchild3',
-      {
-        and: ['parent.child1', 'parent.child2.grandchild3'],
-      },
-    );
+        'parent.child2.grandchild2',
+        'parent',
+        { or: ['parent', 'notParent' as any] },
+      );
+    });
+
+    test.concurrent('test - 2', () => {
+      useExpect(
+        {
+          parent: {
+            child1: {},
+            child2: 'grandchild3',
+          },
+        },
+        'parent.child1',
+        'parent.child2.grandchild3',
+        {
+          and: ['parent.child1', 'parent.child2.grandchild3'],
+        },
+      );
+    });
   });
 });
