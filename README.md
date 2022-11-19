@@ -25,6 +25,10 @@ A function to match with string representation of the current state or parent, o
 I listed the cases inside this code block.
 
 ```typescript
+import buildMatches from '@bemedev/x-matches'
+
+// Case 1 -> simple state
+const 
 ```
 
 <br>

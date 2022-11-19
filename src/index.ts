@@ -10,10 +10,11 @@ import { MatchOptions, reduceFunction, _buildMatches } from './utils';
 export default function buildMatches<T extends StateValue = StateValue>(
   value: T,
 ) {
-  const decomposeds = decompose(value);
   type Value = MatchOptions<StateMatching<T>>;
+  const decomposeds = decompose(value);
+  const matcher = reduceFunction(_buildMatches, decomposeds);
   return (...values: Value[]) => {
-    const matcher = reduceFunction(_buildMatches, decomposeds);
-    return values.every(matcher);
+    const out = values.every(matcher);
+    return out;
   };
 }

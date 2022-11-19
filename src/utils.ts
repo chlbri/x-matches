@@ -13,13 +13,13 @@ export function _buildMatches(
   if (typeof value === 'string') {
     out = decomposeds.includes(value);
   } else if ('or' in value) {
-    const _values = value.or;
-    out = _values
+    const values = value.or;
+    out = values
       .map(value => _buildMatches(decomposeds, value))
       .some(value => value === true);
   } else {
-    const _values = value.and;
-    out = _values
+    const values = value.and;
+    out = values
       .map(value => _buildMatches(decomposeds, value))
       .every(value => value === true);
   }
@@ -27,13 +27,10 @@ export function _buildMatches(
   return out;
 }
 
-// #region PartialCall
 type Arr = readonly any[];
-
 export function reduceFunction<U extends Arr, T extends Arr, R>(
-  f: (...args: [...T, ...U]) => R,
+  fn: (...args: [...T, ...U]) => R,
   ...headArgs: T
 ) {
-  return (...tailArgs: U) => f(...headArgs, ...tailArgs);
+  return (...tailArgs: U) => fn(...headArgs, ...tailArgs);
 }
-// #endregion

@@ -59,21 +59,7 @@ describe('Workflow', () => {
     );
   });
 
-  test.fails('test - 3', () => {
-    useExpect(
-      {
-        parent: {
-          child1: {},
-          child2: 'grandchild3',
-        },
-      },
-      {
-        and: ['parent.child2.grandchild2', 'parent.child2.grandchild3'],
-      },
-    );
-  });
-
-  test.concurrent('test - 4', () => {
+  test.concurrent('test - 3', () => {
     useExpect(
       {
         parent: {
